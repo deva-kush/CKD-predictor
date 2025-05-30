@@ -3,7 +3,7 @@ import joblib
 import numpy as np
 
 # Load saved model
-model = joblib.load('/home/deva_kush/ml_projects/CKD/notebooks/ckd_model.pkl')
+model = joblib.load('ckd_model.pkl')
 
 st.title("🧠 CKD Prediction System")
 st.write("Enter your parameters below to check your risk for Chronic Kidney Disease.")
