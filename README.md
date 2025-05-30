@@ -10,3 +10,5 @@ This is a machine learning-powered web application to predict Chronic Kidney Dis
 
 - ## 📦 Model
 - Trained using Random Forest
+
+  Access the app here: ckd-predictor-5vytng6a3irjjnxii9c6bz.streamlit.app
