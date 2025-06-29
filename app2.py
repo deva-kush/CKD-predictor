@@ -4,6 +4,8 @@ import numpy as np
 
 # Load trained model
 model = joblib.load("ckd_model.pkl")
+scaler = joblib.load('scaler.pkl')
+
 
 # Styling
 st.set_page_config(page_title="CKD Risk Checker", layout="wide")
@@ -47,26 +49,39 @@ with col3:
     cad = st.selectbox("Coronary Artery Disease", ["Yes", "No"])
     ane = st.selectbox("Anemia", ["Yes", "No"])
 
-# Prediction Logic
 if st.button(" Predict My CKD Risk"):
 
-    input_data = np.array([
-        age, bp, sg, al, su,
-        1 if rbc.lower() == "normal" else 0,
-        1 if pc.lower() == "normal" else 0,
-        1 if pcc.lower() == "present" else 0,
-        1 if ba.lower() == "present" else 0,
-        bgr, bu, sc, sod, pot, hemo,
-        pcv, wc, rc,
-        1 if htn.lower() == "yes" else 0,
-        1 if dm.lower() == "yes" else 0,
-        1 if cad.lower() == "yes" else 0,
-        1 if appet.lower() == "good" else 0,
-        1 if pe.lower() == "yes" else 0,
-        1 if ane.lower() == "yes" else 0
-    ]).reshape(1, -1)
+    input_df = pd.DataFrame([{
+        'age': age,
+        'bp': bp,
+        'sg': sg,
+        'al': al,
+        'su': su,
+        'rbc': 1 if rbc.lower() == "normal" else 0,
+        'pc': 1 if pc.lower() == "normal" else 0,
+        'pcc': 1 if pcc.lower() == "present" else 0,
+        'ba': 1 if ba.lower() == "present" else 0,
+        'bgr': bgr,
+        'bu': bu,
+        'sc': sc,
+        'sod': sod,
+        'pot': pot,
+        'hemo': hemo,
+        'pcv': pcv,
+        'wc': wc,
+        'rc': rc,
+        'htn': 1 if htn.lower() == "yes" else 0,
+        'dm': 1 if dm.lower() == "yes" else 0,
+        'cad': 1 if cad.lower() == "yes" else 0,
+        'appet': 1 if appet.lower() == "good" else 0,
+        'pe': 1 if pe.lower() == "yes" else 0,
+        'ane': 1 if ane.lower() == "yes" else 0
+    }])
 
-    prediction = model.predict(input_data)
+    # Optional: scale input if scaler was used
+    # input_df = scaler.transform(input_df)
+
+    prediction = model.predict(input_df)[0]
 
     st.markdown("---")
     st.subheader(" Prediction Result")
@@ -93,6 +108,9 @@ if st.button(" Predict My CKD Risk"):
             """,
             unsafe_allow_html=True
         )
+
+   
+        
 
     st.markdown("---")
     st.info(" This tool provides a preliminary risk assessment. It is not a substitute for professional medical advice.")
