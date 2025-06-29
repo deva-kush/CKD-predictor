@@ -79,7 +79,7 @@ if st.button(" Predict My CKD Risk"):
     }])
 
     # Optional: scale input if scaler was used
-    # input_df = scaler.transform(input_df)
+     input_df = scaler.transform(input_df)
 
     prediction = model.predict(input_df)[0]
 
