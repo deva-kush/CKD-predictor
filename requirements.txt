@@ -1,6 +1,11 @@
 streamlit
 pandas
 numpy
+matplotlib
+seaborn
+ipywidgets
+display
+clear_output
 scikit-learn
 joblib
 xgboost
