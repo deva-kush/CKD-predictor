@@ -7,13 +7,13 @@ model = joblib.load("ckd_model.pkl")
 
 # Styling
 st.set_page_config(page_title="CKD Risk Checker", layout="wide")
-st.markdown("<h1 style='text-align: center;'>🩺 CKD Risk Checker</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center;'> CKD Risk Checker</h1>", unsafe_allow_html=True)
 st.markdown("<p style='text-align: center;'>An intelligent tool to help you understand your risk of Chronic Kidney Disease. Just enter a few health parameters to get started.</p>", unsafe_allow_html=True)
 
 st.markdown("---")
 
 # Input Layout
-st.header("📋 Enter Your Medical Details")
+st.header(" Enter Your Medical Details")
 
 col1, col2, col3 = st.columns(3)
 
@@ -48,7 +48,7 @@ with col3:
     ane = st.selectbox("Anemia", ["Yes", "No"])
 
 # Prediction Logic
-if st.button("🧠 Predict My CKD Risk"):
+if st.button(" Predict My CKD Risk"):
 
     input_data = np.array([
         age, bp, sg, al, su,
@@ -69,13 +69,13 @@ if st.button("🧠 Predict My CKD Risk"):
     prediction = model.predict(input_data)[0]
 
     st.markdown("---")
-    st.subheader("🧾 Prediction Result")
+    st.subheader(" Prediction Result")
 
     if prediction == 1:
         st.markdown(
             """
             <div style="background-color:#ff4d4d;padding:20px;border-radius:10px;text-align:center;color:white;font-size:20px;">
-            ⚠️ <strong>High Risk Detected:</strong><br>
+             <strong>High Risk Detected:</strong><br>
             Our model predicts that you may have a risk of Chronic Kidney Disease.<br>
             Please consult a healthcare professional immediately.
             </div>
@@ -86,7 +86,7 @@ if st.button("🧠 Predict My CKD Risk"):
         st.markdown(
             """
             <div style="background-color:#28a745;padding:20px;border-radius:10px;text-align:center;color:white;font-size:20px;">
-            ✅ <strong>No CKD Risk Detected:</strong><br>
+             <strong>No CKD Risk Detected:</strong><br>
             You're currently not at risk of Chronic Kidney Disease.<br>
             Maintain regular checkups and a healthy lifestyle.
             </div>
@@ -95,4 +95,4 @@ if st.button("🧠 Predict My CKD Risk"):
         )
 
     st.markdown("---")
-    st.info("⚠️ This tool provides a preliminary risk assessment. It is not a substitute for professional medical advice.")
+    st.info(" This tool provides a preliminary risk assessment. It is not a substitute for professional medical advice.")
