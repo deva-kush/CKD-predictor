@@ -85,18 +85,7 @@ if st.button(" Predict My CKD Risk"):
     st.markdown("---")
     st.subheader(" Prediction Result")
 
-    if prediction == 1:
-        st.markdown(
-            """
-            <div style="background-color:#ff4d4d;padding:20px;border-radius:10px;text-align:center;color:white;font-size:20px;">
-             <strong>High Risk Detected:</strong><br>
-            Our model predicts that you may have a risk of Chronic Kidney Disease.<br>
-            Please consult a healthcare professional immediately.
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-    else:
+    if prediction == 0:
         st.markdown(
             """
             <div style="background-color:#28a745;padding:20px;border-radius:10px;text-align:center;color:white;font-size:20px;">
@@ -107,6 +96,19 @@ if st.button(" Predict My CKD Risk"):
             """,
             unsafe_allow_html=True
         )
+        
+    else:
+        st.markdown(
+            """
+            <div style="background-color:#ff4d4d;padding:20px;border-radius:10px;text-align:center;color:white;font-size:20px;">
+             <strong>High Risk Detected:</strong><br>
+            Our model predicts that you may have a risk of Chronic Kidney Disease.<br>
+            Please consult a healthcare professional immediately.
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+        
 
     st.markdown("---")
     st.info(" This tool provides a preliminary risk assessment. It is not a substitute for professional medical advice.")
