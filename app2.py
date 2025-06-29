@@ -51,36 +51,41 @@ with col3:
 
 if st.button(" Predict My CKD Risk"):
 
-    input_df = pd.DataFrame([{
-        'age': age,
-        'bp': bp,
-        'sg': sg,
-        'al': al,
-        'su': su,
-        'rbc': 1 if rbc.lower() == "normal" else 0,
-        'pc': 1 if pc.lower() == "normal" else 0,
-        'pcc': 1 if pcc.lower() == "present" else 0,
-        'ba': 1 if ba.lower() == "present" else 0,
-        'bgr': bgr,
-        'bu': bu,
-        'sc': sc,
-        'sod': sod,
-        'pot': pot,
-        'hemo': hemo,
-        'pcv': pcv,
-        'wc': wc,
-        'rc': rc,
-        'htn': 1 if htn.lower() == "yes" else 0,
-        'dm': 1 if dm.lower() == "yes" else 0,
-        'cad': 1 if cad.lower() == "yes" else 0,
-        'appet': 1 if appet.lower() == "good" else 0,
-        'pe': 1 if pe.lower() == "yes" else 0,
-        'ane': 1 if ane.lower() == "yes" else 0
-    }])
+   # Mapping function for binary fields
+    def bin_map(val, pos_val):
+    return 1 if val.lower() == pos_val else 0
+
+    input_dict = {
+    'age': age,
+    'bp': bp,
+    'sg': sg,
+    'al': al,
+    'su': su,
+    'rbc': bin_map(rbc, "normal"),
+    'pc': bin_map(pc, "normal"),
+    'pcc': bin_map(pcc, "present"),
+    'ba': bin_map(ba, "present"),
+    'bgr': bgr,
+    'bu': bu,
+    'sc': sc,
+    'sod': sod,
+    'pot': pot,
+    'hemo': hemo,
+    'pcv': pcv,
+    'wc': wc,
+    'rc': rc,
+    'htn': bin_map(htn, "yes"),
+    'dm': bin_map(dm, "yes"),
+    'cad': bin_map(cad, "yes"),
+    'appet': bin_map(appet, "good"),
+    'pe': bin_map(pe, "yes"),
+    'ane': bin_map(ane, "yes")
+    }
+
+input_df = pd.DataFrame([input_dict])
 
 
     prediction = model.predict(input_df)
-    print(prediction)
 
     st.markdown("---")
     st.subheader(" Prediction Result")
