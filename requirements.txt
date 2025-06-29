@@ -4,8 +4,7 @@ numpy
 matplotlib
 seaborn
 ipywidgets
-display
-clear-output
+IPython.display
 scikit-learn
 joblib
 xgboost
