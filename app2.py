@@ -80,6 +80,7 @@ if st.button(" Predict My CKD Risk"):
 
 
     prediction = model.predict(input_df)
+    print(prediction)
 
     st.markdown("---")
     st.subheader(" Prediction Result")
