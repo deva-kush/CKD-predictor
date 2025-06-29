@@ -46,22 +46,24 @@ with col3:
     cad = st.selectbox("Coronary Artery Disease", ["Yes", "No"])
     ane = st.selectbox("Anemia", ["Yes", "No"])
 
+# Prediction button logic
 if st.button(" Predict My CKD Risk"):
 
     # Mapping function for binary fields
-    def bin_map(val, pos_val):
-        return 1 if val.lower() == pos_val else 0
+    def map_binary(val, positive):
+        return 1 if val.lower().replace(" ", "") == positive else 0
 
+    # Prepare input data
     input_dict = {
         'age': age,
         'bp': bp,
         'sg': sg,
         'al': al,
         'su': su,
-        'rbc': bin_map(rbc, "normal"),
-        'pc': bin_map(pc, "normal"),
-        'pcc': bin_map(pcc, "present"),
-        'ba': bin_map(ba, "present"),
+        'rbc': map_binary(rbc, 'normal'),
+        'pc': map_binary(pc, 'normal'),
+        'pcc': map_binary(pcc, 'present'),
+        'ba': map_binary(ba, 'present'),
         'bgr': bgr,
         'bu': bu,
         'sc': sc,
@@ -71,15 +73,17 @@ if st.button(" Predict My CKD Risk"):
         'pcv': pcv,
         'wc': wc,
         'rc': rc,
-        'htn': bin_map(htn, "yes"),
-        'dm': bin_map(dm, "yes"),
-        'cad': bin_map(cad, "yes"),
-        'appet': bin_map(appet, "good"),
-        'pe': bin_map(pe, "yes"),
-        'ane': bin_map(ane, "yes")
+        'htn': map_binary(htn, 'yes'),
+        'dm': map_binary(dm, 'yes'),
+        'cad': map_binary(cad, 'yes'),
+        'appet': map_binary(appet, 'good'),
+        'pe': map_binary(pe, 'yes'),
+        'ane': map_binary(ane, 'yes')
     }
 
     input_df = pd.DataFrame([input_dict])
+
+    # Model prediction
     prediction = model.predict(input_df)
 
     st.markdown("---")
@@ -96,7 +100,6 @@ if st.button(" Predict My CKD Risk"):
             """,
             unsafe_allow_html=True
         )
-        
     else:
         st.markdown(
             """
@@ -108,7 +111,6 @@ if st.button(" Predict My CKD Risk"):
             """,
             unsafe_allow_html=True
         )
-        
 
     st.markdown("---")
     st.info(" This tool provides a preliminary risk assessment. It is not a substitute for professional medical advice.")
