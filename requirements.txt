@@ -5,7 +5,7 @@ matplotlib
 seaborn
 ipywidgets
 display
-clear_output
+clear-output
 scikit-learn
 joblib
 xgboost
