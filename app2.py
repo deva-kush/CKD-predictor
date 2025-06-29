@@ -53,34 +53,34 @@ if st.button(" Predict My CKD Risk"):
 
    # Mapping function for binary fields
     def bin_map(val, pos_val):
-    return 1 if val.lower() == pos_val else 0
+        return 1 if val.lower() == pos_val else 0
 
     input_dict = {
-    'age': age,
-    'bp': bp,
-    'sg': sg,
-    'al': al,
-    'su': su,
-    'rbc': bin_map(rbc, "normal"),
-    'pc': bin_map(pc, "normal"),
-    'pcc': bin_map(pcc, "present"),
-    'ba': bin_map(ba, "present"),
-    'bgr': bgr,
-    'bu': bu,
-    'sc': sc,
-    'sod': sod,
-    'pot': pot,
-    'hemo': hemo,
-    'pcv': pcv,
-    'wc': wc,
-    'rc': rc,
-    'htn': bin_map(htn, "yes"),
-    'dm': bin_map(dm, "yes"),
-    'cad': bin_map(cad, "yes"),
-    'appet': bin_map(appet, "good"),
-    'pe': bin_map(pe, "yes"),
-    'ane': bin_map(ane, "yes")
-    }
+        'age': age,
+        'bp': bp,
+        'sg': sg,
+        'al': al,
+        'su': su,
+        'rbc': bin_map(rbc, "normal"),
+        'pc': bin_map(pc, "normal"),
+        'pcc': bin_map(pcc, "present"),
+        'ba': bin_map(ba, "present"),
+        'bgr': bgr,
+        'bu': bu,
+        'sc': sc,
+        'sod': sod,
+        'pot': pot,
+        'hemo': hemo,
+        'pcv': pcv,
+        'wc': wc,
+        'rc': rc,
+        'htn': bin_map(htn, "yes"),
+        'dm': bin_map(dm, "yes"),
+        'cad': bin_map(cad, "yes"),
+        'appet': bin_map(appet, "good"),
+        'pe': bin_map(pe, "yes"),
+        'ane': bin_map(ane, "yes")
+        }
 
 input_df = pd.DataFrame([input_dict])
 
