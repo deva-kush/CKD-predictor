@@ -84,7 +84,7 @@ if st.button(" Predict My CKD Risk"):
     st.markdown("---")
     st.subheader(" Prediction Result")
 
-    if prediction == 1:
+    if prediction != 1:
         st.markdown(
             """
             <div style="background-color:#ff4d4d;padding:20px;border-radius:10px;text-align:center;color:white;font-size:20px;">
