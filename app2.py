@@ -4,7 +4,6 @@ import numpy as np
 
 # Load trained model
 model = joblib.load("ckd_model.pkl")
-scaler = joblib.load('scaler.pkl')
 
 
 # Styling
@@ -78,8 +77,6 @@ if st.button(" Predict My CKD Risk"):
         'ane': 1 if ane.lower() == "yes" else 0
     }])
 
-    # Optional: scale input if scaler was used
-     input_df = scaler.transform(input_df)
 
     prediction = model.predict(input_df)[0]
 
