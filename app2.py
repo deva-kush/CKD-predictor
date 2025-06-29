@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 
 # Load trained model
-model = joblib.load("ckd_model.pkl")
+model = joblib.load("ckd_xgb_model.pkl")
 
 # Styling
 st.set_page_config(page_title="CKD Risk Checker", layout="wide")
