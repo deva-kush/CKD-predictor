@@ -66,7 +66,7 @@ if st.button(" Predict My CKD Risk"):
         1 if ane.lower() == "yes" else 0
     ]).reshape(1, -1)
 
-    prediction = model.predict(input_data)[0]
+    prediction = model.predict(input_data)
 
     st.markdown("---")
     st.subheader(" Prediction Result")
