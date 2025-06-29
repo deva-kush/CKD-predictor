@@ -6,17 +6,14 @@ import numpy as np
 # Load trained model
 model = joblib.load("ckd_model.pkl")
 
-
 # Styling
 st.set_page_config(page_title="CKD Risk Checker", layout="wide")
 st.markdown("<h1 style='text-align: center;'> CKD Risk Checker</h1>", unsafe_allow_html=True)
 st.markdown("<p style='text-align: center;'>An intelligent tool to help you understand your risk of Chronic Kidney Disease. Just enter a few health parameters to get started.</p>", unsafe_allow_html=True)
-
 st.markdown("---")
 
 # Input Layout
 st.header(" Enter Your Medical Details")
-
 col1, col2, col3 = st.columns(3)
 
 with col1:
@@ -51,7 +48,7 @@ with col3:
 
 if st.button(" Predict My CKD Risk"):
 
-   # Mapping function for binary fields
+    # Mapping function for binary fields
     def bin_map(val, pos_val):
         return 1 if val.lower() == pos_val else 0
 
@@ -80,11 +77,9 @@ if st.button(" Predict My CKD Risk"):
         'appet': bin_map(appet, "good"),
         'pe': bin_map(pe, "yes"),
         'ane': bin_map(ane, "yes")
-        }
+    }
 
-input_df = pd.DataFrame([input_dict])
-
-
+    input_df = pd.DataFrame([input_dict])
     prediction = model.predict(input_df)
 
     st.markdown("---")
@@ -112,9 +107,6 @@ input_df = pd.DataFrame([input_dict])
             """,
             unsafe_allow_html=True
         )
-
-   
-        
 
     st.markdown("---")
     st.info(" This tool provides a preliminary risk assessment. It is not a substitute for professional medical advice.")
