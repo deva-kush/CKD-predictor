@@ -3,7 +3,7 @@ import joblib
 import numpy as np
 
 # Load trained model
-model = joblib.load("/home/deva_kush/ml_projects/CKD/notebooks/ckd_model.pkl")
+model = joblib.load("ckd_model.pkl")
 
 # Styling
 st.set_page_config(page_title="CKD Risk Checker", layout="wide")
