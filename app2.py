@@ -52,18 +52,18 @@ if st.button("🧠 Predict My CKD Risk"):
 
     input_data = np.array([
         age, bp, sg, al, su,
-        1 if rbc.lower() == "normal" else 0,
-        1 if pc.lower() == "normal" else 0,
-        1 if pcc.lower() == "present" else 0,
-        1 if ba.lower() == "present" else 0,
+        1 if rbc == "Normal" else 0,
+        1 if pc == "Normal" else 0,
+        1 if pcc == "Present" else 0,
+        1 if ba == "Present" else 0,
         bgr, bu, sc, sod, pot, hemo,
         pcv, wc, rc,
-        1 if htn.lower() == "yes" else 0,
-        1 if dm.lower() == "yes" else 0,
-        1 if cad.lower() == "yes" else 0,
-        1 if appet.lower() == "good" else 0,
-        1 if pe.lower() == "yes" else 0,
-        1 if ane.lower() == "yes" else 0
+        1 if htn == "Yes" else 0,
+        1 if dm == "Yes" else 0,
+        1 if cad == "Yes" else 0,
+        1 if appet == "Good" else 0,
+        1 if pe == "Yes" else 0,
+        1 if ane == "Yes" else 0
     ]).reshape(1, -1)
 
     prediction = model.predict(input_data)
